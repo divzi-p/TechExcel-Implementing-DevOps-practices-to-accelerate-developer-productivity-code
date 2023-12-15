@@ -39,12 +39,7 @@ jobs:
         - name: Test
           run: dotnet test --no-build --verbosity normal
           working-directory: ./Application/src/RazorPagesTestSample
-    dockerbuild:
-        
-        runs-on: ubuntu-latest
-            
-    
-        steps:
+
         - name: Login to Docker registry
           run: echo "${{ secrets.ACR_PASSWORD }}" | docker login ${{ secrets.ACR_LOGIN_SERVER }} -u ${{ secrets.ACR_USERNAME }} --password-stdin
     
