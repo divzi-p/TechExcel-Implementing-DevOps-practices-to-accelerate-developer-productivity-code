@@ -1,7 +1,15 @@
 name: Manual workflow
 
 on:
-    workflow_dispatch:
+  workflow_dispatch:
+   inputs:
+    appenv:
+      type: choice
+      description: Select Target ENV
+      options: 
+        - dev
+        - test
+        - prod
 
 env:
   targetEnv: dev
@@ -26,4 +34,4 @@ jobs:
                 subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
                 resourceGroupName: ${{ secrets.AZURE_RG }}
                 template: ./InfrastructureAsCode/main.bicep
-                parameters: environment=${{ env.targetEnv }}
+                parameters: environment=${{ github.event.inputs.appenv }}
