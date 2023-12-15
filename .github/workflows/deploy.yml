@@ -3,6 +3,9 @@ name: Manual workflow
 on:
     workflow_dispatch:
 
+env:
+  targetEnv: dev
+
 jobs:
     deploy:
         runs-on: ubuntu-latest
@@ -23,3 +26,4 @@ jobs:
                 subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
                 resourceGroupName: ${{ secrets.AZURE_RG }}
                 template: ./InfrastructureAsCode/main.bicep
+                parameters: environment=${{ env.targetEnv }}
